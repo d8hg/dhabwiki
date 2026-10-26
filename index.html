@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قاموس أبو فلاح لصيد الضبان</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Changa:wght@500;700;800&family=Tajawal:wght@400;500;700&display=swap');
+    html,body{direction:rtl}
+    :root{color-scheme:dark;--night:#0d0a14;--dusk:#2a1a2c;--glow:#8a4a2c;--sand:#e8b56a;--sand-d:#4a2c1a;--cream:#f4e8d0;--muted:#c9b594;--sadu:#9a2323;--panel:#150e12f0;--line:#e8b56a33;
+    box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+    html{scroll-padding-top:calc(76px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+    *,*::before,*::after{box-sizing:inherit}
+    body{margin:0;background:var(--night);color:var(--cream);font:400 1.1rem/1.9 'Tajawal','Segoe UI',Tahoma,sans-serif;overflow-x:hidden}
+    h1,h2,h3,.logo,.tab{font-family:'Changa','Tajawal',sans-serif;font-weight:800;margin:0}
+    .scene{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,var(--night),var(--dusk) 55%,var(--glow))}
+    .stars{position:absolute;inset:0 0 40% 0;background-image:radial-gradient(1.4px 1.4px at 12% 20%,#fff9 50%,transparent 51%),radial-gradient(1.2px 1.2px at 38% 8%,#fff8 50%,transparent 51%),radial-gradient(1.6px 1.6px at 66% 22%,#fff9 50%,transparent 51%),radial-gradient(1.2px 1.2px at 85% 10%,#fff7 50%,transparent 51%),radial-gradient(1.2px 1.2px at 52% 34%,#fff6 50%,transparent 51%)}
+    .moon{position:absolute;top:12vh;left:10vw;width:60px;height:60px;border-radius:50%;background:#f6ecd3;box-shadow:0 0 50px 8px #f6ecd333}
+    .moon::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--dusk);transform:translate(14px,-6px) scale(.86)}
+    .dune{position:absolute;left:-5%;width:110%;bottom:0}.dune svg{display:block;width:100%;height:auto}
+    #d1{z-index:1}#d2{z-index:3}
+    .lizard{position:absolute;z-index:2;bottom:12vh;left:0;width:270px;animation:walk 55s linear infinite}
+    .lizard svg{display:block;width:100%;height:auto;animation:sway 1.2s ease-in-out infinite}
+    @keyframes walk{from{transform:translateX(-340px)}to{transform:translateX(calc(100vw + 60px))}}
+    @keyframes sway{50%{transform:translateY(-2px) rotate(1.5deg)}}
+    .leg{transform-box:fill-box;transform-origin:50% 50%;animation:step 1.2s ease-in-out infinite}.leg.b{animation-delay:-.6s}
+    @keyframes step{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
+    .page{position:relative;z-index:5}
+    .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+    .strip{height:12px;background:linear-gradient(135deg,var(--cream) 25%,transparent 25%) -6px 0/12px 12px,linear-gradient(225deg,var(--cream) 25%,transparent 25%) -6px 0/12px 12px,var(--sadu)}
+    nav{position:sticky;top:0;z-index:20;background:#0d0a14ee;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+    nav .wrap{display:flex;align-items:center;height:62px;gap:6px}
+    .logo{font-size:1.5rem;color:var(--sand);text-decoration:none;margin-inline-end:auto}
+    nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+    nav a.l{display:block;color:var(--cream);text-decoration:none;font-weight:500;padding:6px 14px;border-radius:6px;font-size:1.02rem}
+    nav a.l:hover,nav a.l.on{background:var(--sand-d);color:var(--sand)}
+    .burger{display:none;background:none;border:1px solid var(--line);color:var(--sand);border-radius:6px;font-size:1.5rem;width:44px;height:40px;cursor:pointer}
+    a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;min-height:calc(88vh - 74px);padding:50px 0 110px}
+    h1{font-size:clamp(2.8rem,8vw,5.2rem);line-height:1.25;color:var(--sand);text-shadow:0 3px 0 var(--sand-d)}
+    .lead{font-size:1.25rem;margin:16px 0 28px;max-width:30em}
+    .btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{font:700 1.05rem 'Tajawal',sans-serif;border-radius:8px;padding:12px 26px;text-decoration:none;display:inline-block}
+    .btn.p{background:var(--sand);color:#2a1608;box-shadow:0 5px 0 #8f5a26}
+    .btn.p:hover{transform:translateY(2px);box-shadow:0 3px 0 #8f5a26}
+    .btn.s{border:1.5px solid var(--sand);color:var(--sand)}.btn.s:hover{background:var(--sand-d)}
+    .shot{margin:0;border:6px solid var(--sand-d);outline:2px solid var(--sadu);border-radius:4px;overflow:hidden;box-shadow:0 20px 50px #000b;transform:rotate(-1.5deg)}
+    .shot img{display:block;width:100%;height:auto}
+    .panel{background:var(--panel);border-block:1px solid var(--line);padding:64px 0;margin-bottom:34px}
+    h2{font-size:clamp(2rem,5vw,2.8rem);color:var(--sand);line-height:1.4}
+    .sub{color:var(--muted);margin:6px 0 34px;max-width:36em}
+    h3{font-size:1.45rem;color:var(--cream)}
+    .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+    .tab{background:none;border:1.5px solid var(--line);color:var(--cream);font-size:1.15rem;padding:10px 8px;text-align:center;border-radius:8px;cursor:pointer}
+    .tab[aria-selected=true]{background:var(--sand);color:#2a1608;border-color:var(--sand)}
+    .view{border:1.5px solid var(--line);border-radius:10px;padding:26px;background:#0d0a1488}
+    .view h3{font-size:1.8rem;color:var(--sand)}
+    .view p{margin:6px 0 18px;max-width:34em}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:0;list-style:none}
+    .chips li{background:var(--sand-d);border-radius:999px;padding:2px 18px;font-weight:500}
+    .soon{color:var(--sand);border:1px dashed var(--sand);border-radius:8px;padding:10px 16px;display:inline-block;font-size:1rem}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s}
+    .steps div{counter-increment:s;padding:6px 22px 6px 0;position:relative}
+    .steps div::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--sadu);color:var(--cream);font:800 1.4rem 'Changa',sans-serif;margin-bottom:10px}
+    .steps p{margin:0;color:var(--muted);font-size:1.02rem}
+    footer{background:#0b080fee;padding:36px 0 190px;color:var(--muted);font-size:.98rem}
+    footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+    footer .logo{font-size:1.3rem}footer a.f{color:var(--muted);text-decoration:none}footer a.f:hover{color:var(--sand)}
+    .gate{position:fixed;inset:0;z-index:100;display:flex;overflow-y:auto;background:#0d0a14ea;padding:calc(20px + env(safe-area-inset-top,0px)) 18px calc(20px + env(safe-area-inset-bottom,0px));transition:opacity .45s}
+    .gate.out{opacity:0;pointer-events:none}
+    .box{margin:auto;max-width:600px;width:100%;background:#150e12;border:3px solid var(--sand-d);outline:2px solid var(--sadu);border-radius:6px;padding:0 0 26px;text-align:center;box-shadow:0 24px 60px #000c}
+    .box .strip{margin-bottom:24px}
+    .box h2{font-size:clamp(1.9rem,7vw,2.6rem);padding:0 20px}
+    .box>p{margin:8px 24px 18px;font-size:1.08rem}
+    .box h3{color:var(--sand);font-size:1.4rem;margin-bottom:8px}
+    .box ul{list-style:none;margin:0 24px 22px;padding:0;text-align:start}
+    .box li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:1.02rem;line-height:1.7}
+    .box li:last-child{border:0}
+    .box li b{color:var(--sand);font-weight:700}
+    .box .btn{border:0;cursor:pointer;font-size:1.2rem;padding:12px 40px}
+    .ctl{display:flex;gap:10px;margin-bottom:18px}.ctl input,.ctl select{background:#0d0a14;border:1.5px solid var(--line);color:var(--cream);font:500 1rem 'Tajawal',sans-serif;padding:10px 14px;border-radius:8px}.ctl input{flex:1;min-width:0}
+    .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:18px;padding-top:6px}
+    .car{border:1.5px solid var(--line);border-radius:10px;overflow:hidden;background:#ffffff08}
+    .car img{display:block;width:100%;height:150px;object-fit:contain;background:#0d0a14;padding:6px}
+    .ci{padding:18px 18px 18px;position:relative}
+    .cl{position:absolute;top:-14px;inset-inline-start:14px;background:var(--sadu);color:var(--cream);font:800 .95rem 'Changa',sans-serif;padding:0 14px;border-radius:999px}
+    .car b{font:800 1.4rem 'Changa',sans-serif;color:var(--cream);display:block}
+    .pr{color:var(--sand);font:800 1.5rem 'Changa',sans-serif}.pr small{font:500 .9rem 'Tajawal',sans-serif;color:var(--muted)}
+    .car dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 0}
+    .car dl div{background:#0d0a1488;border-radius:8px;padding:6px 10px}
+    .car dt{font-size:.85rem;color:var(--muted);line-height:1.5}
+    .car dd{margin:0;font:800 1.1rem 'Changa',sans-serif;color:var(--cream)}
+    @media(max-width:780px){
+     .burger{display:block}
+     nav ul{display:none;position:absolute;top:100%;inset-inline:0;flex-direction:column;background:#0d0a14;border-bottom:1px solid var(--line);padding:8px 22px 14px}
+     nav ul.open{display:flex}
+     .hero{grid-template-columns:1fr;padding-bottom:90px}.shot{order:-1;max-width:420px}
+     .steps{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(2,1fr)}.steps div{padding-bottom:18px}
+     .lizard{width:190px;bottom:10vh}.moon{width:44px;height:44px}
+    }
+    @media(prefers-reduced-motion:reduce){.lizard,.lizard svg,.leg{animation:none}.lizard{left:18vw}html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gt">
+  <div class="box">
+    <div class="strip"></div>
+    <h2 id="gt">حياكم الله في قاموس أبو فلاح</h2>
+    <p>موقع يجمع لك كل اللي تحتاجه لصيد الضبان في مكان واحد، مرتب وواضح.</p>
+    <h3>وش يفيدك؟</h3>
+    <ul>
+      <li><b>يوفّر وقتك:</b> كل المعلومات في موقع واحد.</li>
+      <li><b>تشتري صح:</b> تقارن الأسعار والمواصفات قبل ما تصرف فلوسك.</li>
+      <li><b>تعرف وين تروح:</b> أماكن الظهور والإحداثيات توصّلك للضب الكويس.</li>
+      <li><b>ترتّب خطوتك الجاية:</b> تعرف شروط الحصول على كل شي.</li>
+    </ul>
+    <button class="btn p" id="ok">موافق، أدخل الموقع</button>
+  </div>
+</div>
+<div class="scene" aria-hidden="true">
+  <div class="stars"></div><div class="moon"></div>
+  <div class="dune" id="d1"><svg viewBox="0 0 1200 260" preserveAspectRatio="none"><path d="M0 120C160 70 300 60 460 105S760 150 900 100 1110 50 1200 90V260H0Z" fill="#4a2a1a"/></svg></div>
+  <div class="lizard"><svg viewBox="0 0 240 100"><g fill="#a68a63"><path d="M72 38C40 38 14 46 2 50c12 4 38 12 70 12z"/><g class="leg"><path d="M150 36c8-10 16-20 24-26l6 6c-8 6-12 14-16 26z"/></g><g class="leg b"><path d="M150 64c8 10 16 20 24 26l6-6c-8-6-12-14-16-26z"/></g><g class="leg b"><path d="M92 34c-6-12-12-22-20-28l-6 6c8 6 12 14 14 28z"/></g><g class="leg"><path d="M92 66c-6 12-12 22-20 28l-6-6c8-6 12-14 14-28z"/></g><ellipse cx="118" cy="50" rx="52" ry="22"/><ellipse cx="178" cy="50" rx="24" ry="14"/></g><g fill="#7d6644" opacity=".8"><path d="M24 50l8-9 4 9zM44 50l8-10 4 10zM24 50l8 9 4-9zM44 50l8 10 4-10z"/></g><g fill="#e8a53a"><circle cx="100" cy="42" r="4"/><circle cx="118" cy="56" r="4.5"/><circle cx="134" cy="41" r="4"/><circle cx="108" cy="58" r="3"/><circle cx="148" cy="52" r="3.5"/><circle cx="86" cy="52" r="3"/><circle cx="60" cy="50" r="3"/></g><circle cx="188" cy="44" r="3" fill="#1b1209"/><circle cx="188" cy="56" r="3" fill="#1b1209"/></svg></div>
+  <div class="dune" id="d2"><svg viewBox="0 0 1200 200" preserveAspectRatio="none"><path d="M0 110C120 140 260 70 420 80S700 150 860 120 1100 60 1200 100V200H0Z" fill="#2a170f"/></svg></div>
+</div>
+
+<div class="page">
+<div class="strip"></div>
+<nav aria-label="القائمة الرئيسية"><div class="wrap">
+  <a class="logo" href="#home">🦎 قاموس أبو فلاح</a>
+  <button class="burger" aria-label="القائمة" aria-expanded="false">☰</button>
+  <ul id="menu">
+    <li><a class="l" href="#home">الرئيسية</a></li>
+    <li><a class="l" href="#sections">الأقسام</a></li>
+    <li><a class="l" href="#how">كيف تستخدمه</a></li>
+  </ul>
+</div></nav>
+
+<header class="wrap hero" id="home">
+  <div>
+    <h1>قاموس أبو فلاح<br>لصيد الضبان</h1>
+    <p class="lead">حياكم الله. هنا تلقى كل اللي تحتاجه عشان تصيد أحسن بوقت أقل: الأنواع والأسعار والأماكن، مرتبة وواضحة في مكان واحد.</p>
+    <div class="btns"><a class="btn p" href="#sections">تصفّح الأقسام</a></div>
+  </div>
+  <figure class="shot"><img src="https://i.ibb.co/7xJwC743/IMG-0519.jpg" alt="سيارة بيك أب أمام محطة وقود ليلًا" width="1400" height="778"></figure>
+</header>
+
+<main>
+<section class="panel" id="sections"><div class="wrap">
+  <h2>الأقسام</h2>
+  <p class="sub">اختر القسم وشوف وش بتلقى فيه.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="view" id="view" role="tabpanel"></div>
+</div></section>
+
+<section class="panel" id="how"><div class="wrap">
+  <h2>كيف تستخدمه؟</h2>
+  <p class="sub">ثلاث خطوات وتكون جاهز للصيد.</p>
+  <div class="steps">
+    <div><h3>اختر القسم</h3><p>ضبان، سيارات، أسلحة، أو إحداثيات حسب اللي تحتاجه.</p></div>
+    <div><h3>قارن واختر</h3><p>شوف الأسعار والأوزان والشروط وقرر بنفسك.</p></div>
+    <div><h3>انطلق للصيد</h3><p>خذ الإحداثية الصح وروح للموقع وأنت عارف وش تدور.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span class="logo">🦎 قاموس أبو فلاح</span>
+  <a class="f" href="#home">الرئيسية</a><a class="f" href="#sections">الأقسام</a><a class="f" href="#how">كيف تستخدمه</a>
+  <div style="flex:1 1 100%;border-top:1px solid var(--line);padding-top:14px;line-height:1.9">الحقوق محفوظة إلى LL”s studios<br>مطور الموقع: discord B8hh <br> شكر خاص الى  ChildishAX~~~مشاري|mob</div>
+</div></footer>
+</div>
+
+<script>
+  (function(){
+    var D=[
+     {n:'الضبان',t:'هنا تعرف كل نوع وكم ندرته قبل لا تطلع الصيد.',c:['جميع الأنواع','الندرة','السعر','الوزن','مكان الظهور'],dabs:1},
+     {n:'السيارات',t:'اختر سيارتك وأنت عارف وش تدفع وش تاخذ.',c:['السعر','الحوض','أكبر ضب يدخل','المستوى'],cars:1},
+     {n:'الأسلحة',t:'تعرف كم سعر كل سلاح وكيف تحصل عليه.',c:['جميع الأنواع','السعر','شروط الحصول']},
+     {n:'الإحداثيات',t:'مواقع تساعدك تلقى ضب كويس بدون تضييع وقت.',c:['أفضل مواقع الصيد','أماكن ظهور الضبان','الإحداثيات'],coords:1}
+    ],tabs=document.getElementById('tabs'),view=document.getElementById('view');
+    function show(i){
+      [].forEach.call(tabs.children,function(b,j){b.setAttribute('aria-selected',j===i)});
+      var d=D[i];
+      if(d.cars){cars(d);return}
+      if(d.dabs){dabs(d);return}
+      if(d.coords){coords(d);return}
+      view.innerHTML='<h3>'+d.n+'</h3><p>'+d.t+'</p><ul class="chips">'+d.c.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><span class="soon">المحتوى يُضاف قريبًا</span>';
+    }
+    var JF='شنطة للصيد · قفص اختياري بالخلف · العملاق على السقف (إضافة الشبك بالتعديل)',B='https://i.ibb.co/';
+    var CARS=[
+     {n:'بهبهاني ١٩٧٩',k:'XXL',bed:'2.7 × 1.4',m:146,l:12,p:90000,q:'لا يدعم',img:B+'rGXwcBPx/IMG-0537.jpg'},
+     {n:'سيرا ٢٠٢٥',k:'XL',bed:'2.3 × 1.5',m:82,l:22,p:230000,q:'يدعم',img:B+'gbFy038Y/IMG-1224.jpg'},
+     {n:'هايلكس ٢٠٠٢',k:'L',bed:'2.1 × 1.2',m:65,l:4,p:35000,q:'لا يدعم',img:B+'27Xhxbc5/IMG-1237.jpg'},
+     {n:'سلفرادو ٢٠١٢',k:'XL',bed:'2.3 × 1.6',m:85,l:6,p:40000,q:'لا يدعم',img:B+'mCFVLhKR/IMG-1238.jpg'},
+     {n:'هايلكس ٢٠١٣ غماره',k:'XL',bed:'2.2 × 1.1',m:76,l:4,p:42000,q:'لا يدعم',img:B+'k2Hr2MX6/IMG-1239.jpg'},
+     {n:'لكسيرا 2025 سبورت',k:'جيوب',l:0,cur:1,ps:'799 Robux',q:'يدعم',f:JF,o:'هذه المركبة محدودة وانتهت النسخ الخاصة بها',img:B+'DfkRRwk1/IMG-1262.jpg'},
+     {n:'لكسيرا 2025',k:'جيوب',l:39,p:840000,q:'يدعم',f:JF,o:'هذه المركبة محدودة وانتهت النسخ الخاصة بها',img:B+'0jqVcNB8/IMG-1261.jpg'},
+     {n:'باتريل 2025 برو',k:'جيوب',l:40,p:385000,q:'يدعم',f:JF,img:B+'PsXxgdDw/IMG-1332.jpg'},
+     {n:'لاند 2025 جي اكس ار',k:'جيوب',l:35,p:300000,q:'يدعم',f:JF,img:B+'kPNDmHX/IMG-1331.jpg'},
+     {n:'باتريل سوبر سفاري',k:'جيوب',l:25,p:195000,q:'يدعم',f:JF,img:B+'rfwkC4k2/IMG-1330.jpg'},
+     {n:'باتريل سفاري',k:'جيوب',l:25,p:155000,q:'يدعم',f:JF,img:B+'XkCFz97D/IMG-1329.jpg'},
+     {n:'لاند 98',k:'جيوب',l:8,p:45000,q:'يدعم',f:JF,img:B+'fzjLtcX2/IMG-1328.jpg'},
+     {n:'راف تي ار اكس 2024',k:'M',bed:'1.8 × 1.4',m:38,l:28,p:450000,q:'يدعم',img:B+'LXWBSHYz/IMG-1260.jpg'},
+     {n:'شاص 2025',k:'L',bed:'2.5 × 1.1',m:113,l:20,p:175000,q:'يدعم',img:B+'BH4wpkg8/IMG-1257.jpg'},
+     {n:'شاص 2023 (فل)',k:'L',bed:'2.5 × 1.1',m:113,l:19,p:165000,q:'يدعم',img:B+'mCBpyHfz/IMG-1256.jpg'},
+     {n:'شاص 2023',k:'L',bed:'2.5 × 1.1',m:113,l:18,p:145000,q:'يدعم',img:B+'ycCn6xWM/IMG-1255.jpg'},
+     {n:'رابتور 2017',k:'M',bed:'1.8 × 1.6',m:44,l:18,p:130000,q:'لا يدعم',img:B+'3ySNgCdj/IMG-1254.jpg'},
+     {n:'اف 15 2024 غمارة',k:'M',bed:'2.2 × 1.4',m:79,l:25,p:220000,q:'يدعم',img:B+'RkpRfR0x/IMG-1259.jpg'},
+     {n:'سيورا 2024',k:'M',bed:'1.8 × 1.3',m:44,l:21,p:210000,q:'لا يدعم',img:B+'k6hzxJ84/IMG-1258.jpg'},
+     {n:'هيليكس 2023',k:'S',bed:'1.6 × 1.2',m:27,l:14,p:95000,q:'لا يدعم',img:B+'0pff5N1N/IMG-1253.jpg'},
+     {n:'هيليكس 2015 غمارة',k:'XL',bed:'2.2 × 1.1',m:76,l:10,p:50000,q:'لا يدعم',img:B+'dstLm1YG/IMG-1252.jpg'}
+    ];
+    function cars(d){
+      view.innerHTML='<h3>'+d.n+'</h3><p>'+d.t+'</p><div class="ctl"><input id="q" type="search" placeholder="ابحث باسم السيارة"><select id="o"><option value="e">الأغلى</option><option value="p">الأرخص</option><option value="n">الاسم</option><option value="l">الأعلى مستوى</option><option value="m">أكبر ضب يدخل</option></select></div><div class="cg" id="cg"></div>';
+      var q=document.getElementById('q'),o=document.getElementById('o'),cg=document.getElementById('cg');
+      function row(a,b){return '<div style="grid-column:1/-1"><dt>'+a+'</dt><dd style="font:500 .95rem/1.7 Tajawal,sans-serif">'+b+'</dd></div>'}
+      function pv(c,k){return c.cur?(k==='p'?1e12:-1):c.p}
+      function r(){
+        var t=q.value.trim(),k=o.value,L=CARS.filter(function(c){return c.n.indexOf(t)>-1});
+        L.sort(function(a,b){return k==='n'?a.n.localeCompare(b.n,'ar'):k==='p'?pv(a,k)-pv(b,k):k==='e'?pv(b,k)-pv(a,k):k==='l'?b.l-a.l:(b.m||0)-(a.m||0)});
+        cg.innerHTML=L.length?L.map(function(c){return '<div class="car"><img src="'+c.img+'" alt="'+c.n+'" loading="lazy"><div class="ci"><span class="cl">'+c.k+'</span><b>'+c.n+'</b><div class="pr"><small>السعر</small> '+(c.cur?c.ps:c.p.toLocaleString('en-US'))+'</div><dl>'+(c.bed?'<div><dt>الحوض</dt><dd>'+c.bed+'</dd></div><div><dt>أكبر ضب يدخل</dt><dd>'+c.m+' كجم</dd></div>':'')+'<div><dt>مستوى المركبة</dt><dd>'+c.l+'</dd></div><div><dt>القلص</dt><dd>'+c.q+'</dd></div>'+(c.f?row('المميزات',c.f):'')+(c.o?row('ملاحظة',c.o):'')+'</dl></div></div>'}).join(''):'<div class="soon">ما لقينا سيارة بهذا الاسم</div>';
+      }
+      q.oninput=r;o.onchange=r;r();
+    }
+    var LZ='<div style="height:110px;background:#0d0a14;display:grid;place-items:center"><svg viewBox="0 0 240 100" width="120" aria-hidden="true"><g fill="#a68a63"><path d="M72 38C40 38 14 46 2 50c12 4 38 12 70 12z"/><g class="leg"><path d="M150 36c8-10 16-20 24-26l6 6c-8 6-12 14-16 26z"/></g><g class="leg b"><path d="M150 64c8 10 16 20 24 26l6-6c-8-6-12-14-16-26z"/></g><g class="leg b"><path d="M92 34c-6-12-12-22-20-28l-6 6c8 6 12 14 14 28z"/></g><g class="leg"><path d="M92 66c-6 12-12 22-20 28l-6-6c8-6 12-14 14-28z"/></g><ellipse cx="118" cy="50" rx="52" ry="22"/><ellipse cx="178" cy="50" rx="24" ry="14"/></g><g fill="#e8a53a"><circle cx="100" cy="42" r="4"/><circle cx="118" cy="56" r="4.5"/><circle cx="134" cy="41" r="4"/><circle cx="108" cy="58" r="3"/><circle cx="148" cy="52" r="3.5"/><circle cx="86" cy="52" r="3"/><circle cx="60" cy="50" r="3"/></g><circle cx="188" cy="44" r="3" fill="#1b1209"/><circle cx="188" cy="56" r="3" fill="#1b1209"/></svg></div>';
+    var KEYS=[8886977776188456],UNL=0;try{UNL=localStorage.getItem('dz')==='1'?1:0}catch(e){}
+    function H(s){var h1=0xdeadbeef,h2=0x41c6ce57,i,c;for(i=0;i<s.length;i++){c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0)}
+    function lockBox(){return UNL?'<div class="soon" style="margin-bottom:14px">🔓 نسبة الظهور مفتوحة</div>':'<div class="view" style="padding:14px 16px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><span>🔒 نسبة الظهور مقفلة، أدخل الكود لفتحها</span><input id="cd" type="text" placeholder="الكود" style="background:#0d0a14;border:1.5px solid var(--line);color:var(--cream);font:500 1rem Tajawal,sans-serif;padding:8px 12px;border-radius:8px;min-width:0;flex:1 1 140px"><button class="btn p" id="cb" style="border:0;cursor:pointer;padding:8px 22px">فتح</button><span id="cm" style="color:var(--sand)"></span></div>'}
+    var CATS=['فاخر','أسطوري','خرافي'];
+    var DABS=[{"n":"ضب السبخة","k":"فاخر","g":0,"w":"22 - 34","p":"3,960 - 6,120 (ممتاز 7,040)","b":"2,500 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"2.8٪ (1 من 35) من ضبان الأقاصي 10.7-13.3 كم","l":"السبخة شرق الديرة (ملح أبيض) · شرق · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":34.0,"pm":7040.0,"rm":2.8},{"n":"ضب طويق","k":"فاخر","g":0,"w":"26 - 40","p":"4,915 - 7,560 (ممتاز 8,695)","b":"3,100 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"3.4٪ (1 من 29) من ضبان الأقاصي 10.7-13.3 كم","l":"ظهر طويق وحوافه · غرب · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":40.0,"pm":8695.0,"rm":3.4},{"n":"ضب الحرّة","k":"فاخر","g":0,"w":"28 - 44","p":"5,545 - 8,710 (ممتاز 10,020)","b":"3,550 ريال + 360 خبرة","t":"الضحى، القايلة، العصر (يكثر)","r":"4.0٪ (1 من 25) من ضبان الأقاصي 10.7-13.3 كم","l":"حرّة الشمال (صخر بركاني أسود) · شمال، الحرّات · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":44.0,"pm":10020.0,"rm":4.0},{"n":"ضب القمر","k":"فاخر","g":0,"w":"24 - 38","p":"5,400 - 8,550 (ممتاز 9,835)","b":"3,500 ريال + 360 خبرة","t":"الليل بس","r":"4.2٪ (1 من 24) من ضبان الأقاصي 13.3-16 كم","l":"أي مكان بالنطاق الرابع · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":38.0,"pm":9835.0,"rm":4.2},{"n":"ضب العروق","k":"فاخر","g":0,"w":"23 - 37","p":"4,140 - 6,660 (ممتاز 7,660)","b":"2,700 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"7.6٪ (1 من 13) من ضبان الأقاصي 13.3-16 كم","l":"عروق الرمل الطويلة · جنوب · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":37.0,"pm":7660.0,"rm":7.6},{"n":"ضب الدبدبة","k":"فاخر","g":0,"w":"25 - 40","p":"4,725 - 7,560 (ممتاز 8,695)","b":"3,050 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"6.5٪ (1 من 15) من ضبان الأقاصي 10.7-13.3 كم","l":"سهل الدبدبة (حصى ملوّن) · شمال، شرق · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":40.0,"pm":8695.0,"rm":6.5},{"n":"ضب القارة","k":"فاخر","g":0,"w":"24 - 39","p":"4,750 - 7,720 (ممتاز 8,880)","b":"3,100 ريال + 360 خبرة","t":"العصر، المغرب (يكثر)","r":"1.5٪ (1 من 66) من ضبان الأقاصي 10.7-13.3 كم","l":"جبل القارة بالأحساء وكهوفه · شرق · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":39.0,"pm":8880.0,"rm":1.5},{"n":"ضب الهجير","k":"فاخر","g":0,"w":"26 - 42","p":"5,615 - 9,070 (ممتاز 10,435)","b":"3,650 ريال + 360 خبرة","t":"القايلة بس","r":"2.2٪ (1 من 46) من ضبان الأقاصي 13.3-16 كم","l":"كل النطاق الرابع وقت الظهر · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":42.0,"pm":10435.0,"rm":2.2},{"n":"ضب العارض","k":"فاخر","g":0,"w":"27 - 43","p":"5,105 - 8,125 (ممتاز 9,345)","b":"3,300 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"3.0٪ (1 من 34) من ضبان الأقاصي 10.7-13.3 كم","l":"صخور العارض (حافة طويق) · غرب · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":43.0,"pm":9345.0,"rm":3.0},{"n":"ضب النقا","k":"فاخر","g":0,"w":"25 - 41","p":"4,950 - 8,120 (ممتاز 9,335)","b":"3,250 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"1.6٪ (1 من 64) من ضبان الأقاصي 10.7-13.3 كم","l":"نقيان الدهناء (قمم العروق) · شرق · من الأقاصي 3.2-5.3 كم لين الأقاصي 13.3-16 كم","wm":41.0,"pm":9335.0,"rm":1.6},{"n":"ضب الرماد","k":"فاخر","g":0,"w":"26 - 42","p":"5,150 - 8,315 (ممتاز 9,565)","b":"3,350 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"2.5٪ (1 من 39) من ضبان الأقاصي 10.7-13.3 كم","l":"الحرّة السوداء (صخر وحمم ورماد) · الحرّات، غرب · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":42.0,"pm":9565.0,"rm":2.5},{"n":"ضب الملح","k":"فاخر","g":0,"w":"23 - 38","p":"4,345 - 7,180 (ممتاز 8,260)","b":"2,900 ريال + 360 خبرة","t":"الفجر، الضحى (يكثر)","r":"1.6٪ (1 من 61) من ضبان الأقاصي 10.7-13.3 كم","l":"أطراف السبخة الكبرى (ملح أبيض) · شرق · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":38.0,"pm":8260.0,"rm":1.6},{"n":"ضب الربع الخالي","k":"أسطوري","g":0,"w":"45 - 70","p":"11,250 - 17,500 (ممتاز 20,125)","b":"7,200 ريال + 900 خبرة","t":"الضحى (يكثر)","r":"4.8٪ (1 من 21) من ضبان الأقاصي 13.3-16 كم","l":"عروق الربع الخالي · جنوب، الزوايا · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":70.0,"pm":20125.0,"rm":4.8},{"n":"ضب وبار","k":"أسطوري","g":0,"w":"50 - 78","p":"13,750 - 21,450 (ممتاز 24,665)","b":"8,800 ريال + 900 خبرة","t":"العصر، المغرب (يكثر)","r":"0.83٪ (1 من 121) من ضبان الأقاصي 13.3-16 كم","l":"فوهات وبار (زجاج أسود) · جنوب · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":78.0,"pm":24665.0,"rm":0.83},{"n":"الضب الذهبي","k":"أسطوري","g":0,"w":"55 - 85","p":"17,190 - 26,565 (ممتاز 30,545)","b":"11,000 ريال + 900 خبرة","t":"القايلة (يكثر)","r":"1.4٪ (1 من 70) من ضبان الأقاصي 13.3-16 كم","l":"حافة الربع الخالي والأقاصي (كل الجهات) · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":85.0,"pm":30545.0,"rm":1.4},{"n":"ضب الجافورة","k":"أسطوري","g":0,"w":"47 - 72","p":"11,750 - 18,000 (ممتاز 20,700)","b":"7,450 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"1.1٪ (1 من 89) من ضبان الأقاصي 13.3-16 كم","l":"رمال الجافورة (شرق الربع الخالي) · شرق · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":72.0,"pm":20700.0,"rm":1.1},{"n":"ضب حسمى","k":"أسطوري","g":0,"w":"50 - 80","p":"13,750 - 22,000 (ممتاز 25,300)","b":"8,950 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"1.6٪ (1 من 63) من ضبان الأقاصي 13.3-16 كم","l":"صخور رملية حمرا مثل حسمى · شمال، غرب · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":80.0,"pm":25300.0,"rm":1.6},{"n":"ضب السراب","k":"أسطوري","g":0,"w":"50 - 80","p":"15,000 - 24,000 (ممتاز 27,600)","b":"10,750 ريال + 900 خبرة","t":"القايلة (يكثر)","r":"1.4٪ (1 من 70) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي: سهول يرقص فوقها السراب · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":80.0,"pm":27600.0,"rm":1.4},{"n":"ضب سهيل","k":"أسطوري","g":0,"w":"55 - 83","p":"17,875 - 26,975 (ممتاز 31,020)","b":"14,500 ريال + 900 خبرة","t":"الفجر، الضحى بس","r":"0.47٪ (1 من 214) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي البعيدة · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":83.0,"pm":31020.0,"rm":0.47},{"n":"ضب الحافة","k":"أسطوري","g":0,"w":"52 - 82","p":"15,600 - 24,600 (ممتاز 28,290)","b":"12,000 ريال + 900 خبرة","t":"الفجر، الضحى (يكثر)","r":"0.32٪ (1 من 314) من ضبان الأقاصي 13.3-16 كم","l":"حافة طويق العليا (الجرف الكبير) · غرب · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":82.0,"pm":28290.0,"rm":0.32},{"n":"ضب القدر","k":"أسطوري","g":0,"w":"56 - 84","p":"17,500 - 26,250 (ممتاز 30,185)","b":"14,250 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"0.29٪ (1 من 348) من ضبان الأقاصي 13.3-16 كم","l":"سفوح جبل القدر بالحرّة · غرب · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":84.0,"pm":30185.0,"rm":0.29},{"n":"ضب حنيفة","k":"أسطوري","g":0,"w":"48 - 78","p":"15,000 - 24,375 (ممتاز 28,030)","b":"12,750 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"0.11٪ (1 من 871) من ضبان الأقاصي 13.3-16 كم","l":"وادي حنيفة وفيضته بعد السيل · غرب · من الأقاصي 8-10.7 كم لين الأقاصي 13.3-16 كم","wm":78.0,"pm":28030.0,"rm":0.11},{"n":"ضب السدو","k":"خرافي","g":0,"w":"90 - 125","p":"30,600 - 42,500 (ممتاز 48,875)","b":"18,250 ريال + 3000 خبرة","t":"كل الأوقات","r":"0.80٪ (1 من 125) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي البعيدة: كهوف وصخور · الأقاصي 13.3-16 كم","wm":125.0,"pm":48875.0,"rm":0.8},{"n":"ضب الثريا","k":"خرافي","g":0,"w":"96 - 128","p":"37,535 - 50,050 (ممتاز 57,555)","b":"24,000 ريال + 3000 خبرة","t":"الفجر، المغرب بس","r":"0.091٪ (1 من 1,096) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · الأقاصي 13.3-16 كم","wm":128.0,"pm":57555.0,"rm":0.091},{"n":"ضب الوعبة","k":"خرافي","g":0,"w":"100 - 136","p":"39,100 - 53,175 (ممتاز 61,150)","b":"27,750 ريال + 3000 خبرة","t":"الضحى، العصر (يكثر)","r":"0.60٪ (1 من 166) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي البعيدة: فوهات بازلت وملح · الأقاصي 13.3-16 كم","wm":136.0,"pm":61150.0,"rm":0.6},{"n":"ضب طميّة","k":"خرافي","g":0,"w":"108 - 142","p":"44,065 - 57,935 (ممتاز 66,625)","b":"38,250 ريال + 3000 خبرة","t":"القايلة، العصر (يكثر)","r":"0.33٪ (1 من 308) من ضبان الأقاصي 13.3-16 كم","l":"أبعد الأقاصي · الأقاصي 13.3-16 كم","wm":142.0,"pm":66625.0,"rm":0.33},{"n":"ضب اللؤلؤ","k":"خرافي","g":0,"w":"104 - 140","p":"42,430 - 57,120 (ممتاز 65,690)","b":"34,750 ريال + 3000 خبرة","t":"الفجر، الضحى بس","r":"0.037٪ (1 من 2,681) من ضبان الأقاصي 13.3-16 كم","l":"قلب السبخة الكبرى · شرق · الأقاصي 13.3-16 كم","wm":140.0,"pm":65690.0,"rm":0.037},{"n":"أبو الضبان","k":"خرافي","g":0,"w":"110 - 146","p":"44,880 - 59,570 (ممتاز 68,505)","b":"26,000 ريال + 3000 خبرة","t":"—","r":"فزعة: فرصة كل 30-60 دقيقة (75٪) = تقريباً مرة بالساعة، عند صخرة الضب أو زاوية من الأقاصي","l":"فزعة أبو الضبان: صخرة الضب أو زاوية من الأقاصي","wm":146.0,"pm":68505.0,"rm":30.0},{"n":"ضب الدبران","k":"خرافي","g":1,"w":"700 - 1,150","p":"108,695 - 139,315 (ممتاز 160,215)","b":"60,000 ريال + 3000 خبرة","t":"العصر، المغرب (يكثر)","r":"0.080٪ (1 من 1,247) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي البعيدة العصر والمغرب · الأقاصي 13.3-16 كم","wm":1150.0,"pm":160215.0,"rm":0.08},{"n":"ضب الشعرى","k":"خرافي","g":1,"w":"800 - 1,300","p":"122,010 - 155,530 (ممتاز 178,860)","b":"67,500 ريال + 3000 خبرة","t":"الفجر، الضحى (يكثر)","r":"0.072٪ (1 من 1,389) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي البعيدة الفجر والضحى · الأقاصي 13.3-16 كم","wm":1300.0,"pm":178860.0,"rm":0.072},{"n":"الطَّوْد","k":"خرافي","g":1,"w":"900 - 1,450","p":"129,410 - 164,260 (ممتاز 188,900)","b":"72,500 ريال + 3000 خبرة","t":"الضحى، العصر (يكثر)","r":"0.031٪ (1 من 3,257) من ضبان الأقاصي 13.3-16 كم","l":"أبعد الأقاصي الغربية والشمالية · غرب، شمال · الأقاصي 13.3-16 كم","wm":1450.0,"pm":188900.0,"rm":0.031},{"n":"ضب التنّين","k":"خرافي","g":1,"w":"1,000 - 1,700","p":"142,905 - 186,325 (ممتاز 214,275)","b":"80,000 ريال + 3000 خبرة","t":"القايلة، العصر (يكثر)","r":"0.060٪ (1 من 1,681) من ضبان الأقاصي 13.3-16 كم","l":"أبعد الأقاصي بعز القايلة والعصر · الأقاصي 13.3-16 كم","wm":1700.0,"pm":214275.0,"rm":0.06},{"n":"سلطان الأقاصي","k":"خرافي","g":1,"w":"1,300 - 2,000","p":"170,345 - 211,285 (ممتاز 242,975)","b":"95,000 ريال + 3000 خبرة","t":"الضحى، العصر (يكثر)","r":"0.069٪ (1 من 1,451) من ضبان الأقاصي 13.3-16 كم","l":"أبعد الأقاصي (حد البنزين) · الأقاصي 13.3-16 كم","wm":2000.0,"pm":242975.0,"rm":0.069},{"n":"ضب أبو شراع","k":"أسطوري","g":1,"w":"220 - 600","p":"34,185 - 56,460 (ممتاز 64,925)","b":"22,250 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"0.28٪ (1 من 362) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":600.0,"pm":64925.0,"rm":0.28},{"n":"ضب الجوزاء","k":"أسطوري","g":1,"w":"260 - 680","p":"42,740 - 69,120 (ممتاز 79,490)","b":"27,500 ريال + 900 خبرة","t":"الفجر، المغرب، الضحى (يكثر)","r":"0.19٪ (1 من 528) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي الفجر والضحى والمغرب · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":680.0,"pm":79490.0,"rm":0.19},{"n":"ضب المرزم","k":"أسطوري","g":1,"w":"240 - 640","p":"37,490 - 61,225 (ممتاز 70,410)","b":"24,250 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"0.22٪ (1 من 453) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":640.0,"pm":70410.0,"rm":0.22},{"n":"ضب النعايم","k":"أسطوري","g":1,"w":"280 - 700","p":"40,495 - 64,030 (ممتاز 73,635)","b":"25,500 ريال + 900 خبرة","t":"القايلة، العصر (يكثر)","r":"0.100٪ (1 من 1,004) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي الجنوبية والشرقية · جنوب، شرق · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":700.0,"pm":73635.0,"rm":0.1},{"n":"ضب الشولة","k":"أسطوري","g":1,"w":"240 - 660","p":"39,280 - 65,135 (ممتاز 74,905)","b":"25,500 ريال + 900 خبرة","t":"العصر، المغرب (يكثر)","r":"0.17٪ (1 من 572) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي العصر والمغرب · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":660.0,"pm":74905.0,"rm":0.17},{"n":"ضب المجرّة","k":"أسطوري","g":1,"w":"300 - 750","p":"47,905 - 75,745 (ممتاز 87,110)","b":"30,250 ريال + 900 خبرة","t":"الليل بس","r":"0.31٪ (1 من 320) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي بالليل · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":750.0,"pm":87110.0,"rm":0.31},{"n":"ضب البرّاق","k":"أسطوري","g":1,"w":"230 - 600","p":"34,955 - 56,460 (ممتاز 64,925)","b":"22,500 ريال + 900 خبرة","t":"القايلة (يكثر)","r":"0.21٪ (1 من 469) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي بعز القايلة · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":600.0,"pm":64925.0,"rm":0.21},{"n":"ضب العقيق","k":"أسطوري","g":1,"w":"260 - 690","p":"42,740 - 69,625 (ممتاز 80,070)","b":"27,500 ريال + 900 خبرة","t":"الضحى (يكثر)","r":"0.040٪ (1 من 2,494) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي الشرقية · شرق · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":690.0,"pm":80070.0,"rm":0.04},{"n":"ضب الزمرد","k":"أسطوري","g":1,"w":"260 - 720","p":"44,600 - 74,215 (ممتاز 85,350)","b":"29,250 ريال + 900 خبرة","t":"الضحى، العصر (يكثر)","r":"0.092٪ (1 من 1,085) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي الغربية والشمالية · غرب، شمال · من الأقاصي 10.7-13.3 كم لين الأقاصي 13.3-16 كم","wm":720.0,"pm":85350.0,"rm":0.092},{"n":"ضب الدرع","k":"فاخر","g":1,"w":"100 - 260","p":"11,940 - 19,250 (ممتاز 22,140)","b":"7,650 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"0.68٪ (1 من 146) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي القريبة · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":260.0,"pm":22140.0,"rm":0.68},{"n":"ضب أبو قرنين","k":"فاخر","g":1,"w":"110 - 280","p":"13,775 - 21,975 (ممتاز 25,275)","b":"8,750 ريال + 360 خبرة","t":"الضحى (يكثر)","r":"0.53٪ (1 من 189) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":280.0,"pm":25275.0,"rm":0.53},{"n":"ضب الترس","k":"فاخر","g":1,"w":"90 - 240","p":"11,325 - 18,495 (ممتاز 21,270)","b":"7,300 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"0.28٪ (1 من 359) من ضبان الأقاصي 10.7-13.3 كم","l":"الأقاصي الشمالية والشرقية · شمال، شرق · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":240.0,"pm":21270.0,"rm":0.28},{"n":"ضب الحصن","k":"فاخر","g":1,"w":"130 - 300","p":"14,295 - 21,715 (ممتاز 24,970)","b":"8,800 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"0.30٪ (1 من 328) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي الغربية والجنوبية · غرب، جنوب · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":300.0,"pm":24970.0,"rm":0.3},{"n":"ضب البرج","k":"فاخر","g":1,"w":"100 - 250","p":"12,535 - 19,820 (ممتاز 22,795)","b":"7,950 ريال + 360 خبرة","t":"العصر (يكثر)","r":"0.49٪ (1 من 202) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":250.0,"pm":22795.0,"rm":0.49},{"n":"ضب السيف","k":"فاخر","g":1,"w":"95 - 240","p":"12,800 - 20,345 (ممتاز 23,400)","b":"8,150 ريال + 360 خبرة","t":"الضحى (يكثر)","r":"0.18٪ (1 من 560) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي الجنوبية · جنوب · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":240.0,"pm":23400.0,"rm":0.18},{"n":"ضب الرمح","k":"فاخر","g":1,"w":"90 - 230","p":"11,325 - 18,110 (ممتاز 20,825)","b":"7,200 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"0.60٪ (1 من 167) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":230.0,"pm":20825.0,"rm":0.6},{"n":"ضب أبو ناب","k":"فاخر","g":1,"w":"110 - 270","p":"13,150 - 20,600 (ممتاز 23,690)","b":"8,300 ريال + 360 خبرة","t":"العصر (يكثر)","r":"0.056٪ (1 من 1,770) من ضبان الأقاصي 10.7-13.3 كم","l":"الأقاصي الشرقية · شرق · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":270.0,"pm":23690.0,"rm":0.056},{"n":"ضب المنجل","k":"فاخر","g":1,"w":"100 - 260","p":"13,135 - 21,180 (ممتاز 24,355)","b":"8,400 ريال + 360 خبرة","t":"الضحى، العصر (يكثر)","r":"0.14٪ (1 من 709) من ضبان الأقاصي 10.7-13.3 كم","l":"الأقاصي الشمالية · شمال · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":260.0,"pm":24355.0,"rm":0.14},{"n":"ضب الحديد","k":"فاخر","g":1,"w":"140 - 300","p":"16,245 - 23,780 (ممتاز 27,350)","b":"9,800 ريال + 360 خبرة","t":"القايلة، العصر (يكثر)","r":"0.41٪ (1 من 241) من ضبان الأقاصي 13.3-16 كم","l":"الأقاصي · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":300.0,"pm":27350.0,"rm":0.41},{"n":"ضب الكهف","k":"فاخر","g":1,"w":"95 - 250","p":"12,800 - 20,765 (ممتاز 23,880)","b":"8,200 ريال + 360 خبرة","t":"العصر، المغرب (يكثر)","r":"0.46٪ (1 من 217) من ضبان الأقاصي 13.3-16 كم","l":"كهوف الأقاصي العصر والمغرب · من الأقاصي 5.3-8 كم لين الأقاصي 13.3-16 كم","wm":250.0,"pm":23880.0,"rm":0.46},{"n":"ضب الياقوت","k":"خرافي","g":1,"w":"1,200 - 3,325","p":"284,625 - 473,785 (ممتاز 544,855)","b":"75,000 ريال + 6000 خبرة","t":"—","r":"خرافي نادر: وأنت قريب من مكانه، فرصة 1.5٪ كل 20 ثانية = تقريباً مرة كل 22 دقيقة، ويرتاح المكان 10 دقايق بعده","l":"حزم الياقوت: 15 كم شمال الديرة، ونادر مرّة","wm":3325.0,"pm":544855.0,"rm":1.5},{"n":"ضب الكهرمان","k":"خرافي","g":1,"w":"1,200 - 3,325","p":"284,625 - 473,785 (ممتاز 544,855)","b":"75,000 ريال + 6000 خبرة","t":"—","r":"خرافي نادر: وأنت قريب من مكانه، فرصة 1.5٪ كل 20 ثانية = تقريباً مرة كل 22 دقيقة، ويرتاح المكان 10 دقايق بعده","l":"حزم الياقوت: 15 كم شمال الديرة، ونادر مرّة","wm":3325.0,"pm":544855.0,"rm":1.5},{"n":"ضب التبر","k":"خرافي","g":1,"w":"1,200 - 3,325","p":"284,625 - 473,785 (ممتاز 544,855)","b":"75,000 ريال + 6000 خبرة","t":"—","r":"خرافي نادر: وأنت قريب من مكانه، فرصة 1.5٪ كل 20 ثانية = تقريباً مرة كل 22 دقيقة، ويرتاح المكان 10 دقايق بعده","l":"قارة التبر: 15 كم جنوب الديرة، ونادر مرّة","wm":3325.0,"pm":544855.0,"rm":1.5},{"n":"ضب الفيروز","k":"خرافي","g":1,"w":"1,200 - 3,325","p":"284,625 - 473,785 (ممتاز 544,855)","b":"75,000 ريال + 6000 خبرة","t":"—","r":"خرافي نادر: وأنت قريب من مكانه، فرصة 1.5٪ كل 20 ثانية = تقريباً مرة كل 22 دقيقة، ويرتاح المكان 10 دقايق بعده","l":"نقرة الفيروز: 15 كم غرب الديرة، ونادر مرّة","wm":3325.0,"pm":544855.0,"rm":1.5},{"n":"ضب الألماس","k":"خرافي","g":1,"w":"1,200 - 3,325","p":"284,625 - 473,785 (ممتاز 544,855)","b":"75,000 ريال + 6000 خبرة","t":"—","r":"خرافي نادر: وأنت قريب من مكانه، فرصة 1.5٪ كل 20 ثانية = تقريباً مرة كل 22 دقيقة، ويرتاح المكان 10 دقايق بعده","l":"نقرة الفيروز: 15 كم غرب الديرة، ونادر مرّة","wm":3325.0,"pm":544855.0,"rm":1.5},{"n":"الضب الملبوس","k":"خرافي","g":1,"w":"1,200 - 2,400","p":"200,000 - 300,000","b":"60,000 ريال + 6000 خبرة","t":"بالليل بس","r":"بالليل بس وبعيد: تقريباً 12٪ بالليلة للي برا = مرة كل 8 ليالي صيد تقريباً، واحد بالسيرفر","l":"بالليل بس، بعيد عن الديرة (الربع الخالي وأبعد)، ونادر مرّة","wm":2400.0,"pm":300000.0,"rm":12.0},{"n":"الجُلمود","k":"خرافي","g":1,"w":"4,000 - 8,000","p":"1,000,000 - 2,000,000","b":"150,000 ريال + 8000 خبرة","t":"—","r":"آخر البر المحجوب: فرصة 1٪ كل دقيقة = تقريباً مرة كل 100 دقيقة هناك (بالنهار 70٪ هو، بالليل 30٪)","l":"البرّ المحجوب: «ديار العماليق» آخر الأرض ورا بوابة الأوّلين، ونادر مرّة","wm":8000.0,"pm":2000000.0,"rm":1.0},{"n":"الفَرْقَد","k":"خرافي","g":1,"w":"4,000 - 8,000","p":"1,000,000 - 2,000,000","b":"150,000 ريال + 8000 خبرة","t":"—","r":"آخر البر المحجوب: فرصة 1٪ كل دقيقة = تقريباً مرة كل 100 دقيقة هناك (بالليل 70٪ هو، بالنهار 30٪)","l":"البرّ المحجوب: «ديار العماليق» آخر الأرض ورا بوابة الأوّلين، ونادر مرّة","wm":8000.0,"pm":2000000.0,"rm":1.0},{"n":"ضب الطوق","k":"فاخر","g":0,"w":"6 - 16","p":"3,000 - 7,000","b":"4,000 ريال + 400 خبرة","t":"—","r":"البر المحجوب: 100٪ بأول جزء، 65٪ بالثاني، 25٪ بالثالث","l":"البرّ المحجوب: العتبة ووادي الصدى وسهل الصوّان","wm":16.0,"pm":7000.0,"rm":100.0},{"n":"ضب الصدى","k":"أسطوري","g":0,"w":"40 - 85","p":"12,000 - 26,000","b":"7,500 ريال + 700 خبرة","t":"—","r":"البر المحجوب: 35٪ بالجزء الثاني، 50٪ بالثالث، 35٪ بالرابع","l":"البرّ المحجوب: وادي الصدى وسهل الصوّان والقِلات","wm":85.0,"pm":26000.0,"rm":35.0},{"n":"ضب الصوّان","k":"خرافي","g":0,"w":"95 - 140","p":"30,000 - 55,000","b":"17,500 ريال + 1500 خبرة","t":"—","r":"البر المحجوب: 25٪ بالجزء الثالث، 45٪ بالرابع، 50٪ بالخامس، 45٪ بالأخير","l":"البرّ المحجوب: من سهل الصوّان لين ديار العماليق","wm":140.0,"pm":55000.0,"rm":25.0},{"n":"ضب اللازورد","k":"خرافي","g":0,"w":"110 - 146","p":"50,000 - 85,000","b":"25,000 ريال + 2000 خبرة","t":"—","r":"البر المحجوب: 20٪ بالجزء الرابع، 50٪ بالخامس، 55٪ بالأخير","l":"البرّ المحجوب: القِلات والوعور وديار العماليق","wm":146.0,"pm":85000.0,"rm":20.0},{"n":"ضب البِلّور","k":"خرافي","g":1,"w":"500 - 1,500","p":"150,000 - 300,000","b":"60,000 ريال + 4000 خبرة","t":"—","r":"البر المحجوب (الجزء الرابع والخامس): فرصة 1.5٪ كل 45 ثانية = تقريباً مرة كل 50 دقيقة","l":"البرّ المحجوب: القِلات والوعور، ونادر","wm":1500.0,"pm":300000.0,"rm":1.5},{"n":"ضب الحِمَم","k":"خرافي","g":1,"w":"1,500 - 3,300","p":"320,000 - 600,000","b":"90,000 ريال + 5000 خبرة","t":"—","r":"البر المحجوب (الجزء الخامس والأخير): فرصة 1.2٪ كل دقيقة = تقريباً مرة كل 83 دقيقة","l":"البرّ المحجوب: الوعور وديار العماليق، ونادر","wm":3300.0,"pm":600000.0,"rm":1.2},{"n":"أبو صخر","k":"خرافي","g":1,"w":"8,000 - 13,000","p":"5,000,000 - 11,000,000","b":"250,000 ريال + 12000 خبرة","t":"—","r":"بساحة أبو صخر فوق جبله بس","l":"البرّ المحجوب: ما يطلع إلا في «ساحة أبو صخر» فوق جبله، بالجُلمود والفَرْقَد","wm":13000.0,"pm":11000000.0,"rm":999}];
+    function dabs(d){
+      var opts='<option value="">كل الفئات</option>'+CATS.map(function(c){return '<option>'+c+'</option>'}).join(''),N=24;
+      view.innerHTML='<h3>'+d.n+'</h3><p>'+d.t+'</p><div class="ctl" style="flex-wrap:wrap"><input id="q" type="search" placeholder="ابحث باسم الضب أو المكان" style="flex:1 1 100%"><select id="f">'+opts+'</select><select id="g"><option value="">كل الأحجام</option><option value="1">عملاق فقط</option><option value="0">بدون عملاق</option></select><select id="o"><option value="e">الأغلى</option><option value="p">الأرخص</option><option value="i">الترتيب الأصلي</option><option value="n">الاسم</option><option value="w">الأثقل</option>'+(UNL?'<option value="r">الأندر ظهورًا</option>':'')+'</select></div>'+lockBox()+'<p id="ct" style="margin:0 0 12px;color:var(--muted)"></p><div class="cg" id="cg"></div><div style="text-align:center;margin-top:20px"><button class="btn p" id="mr" style="border:0;cursor:pointer;display:none">عرض المزيد</button></div>';
+      var q=document.getElementById('q'),f=document.getElementById('f'),g=document.getElementById('g'),o=document.getElementById('o'),cg=document.getElementById('cg'),mr=document.getElementById('mr'),ct=document.getElementById('ct');
+      var cb=document.getElementById('cb'),cd=document.getElementById('cd');
+      function tryKey(){if(KEYS.indexOf(H(cd.value.trim().toLowerCase()))>-1){UNL=1;try{localStorage.setItem('dz','1')}catch(e){}dabs(d)}else document.getElementById('cm').textContent='الكود غير صحيح'}
+      if(cb){cb.onclick=tryKey;cd.onkeydown=function(e){if(e.key==='Enter')tryKey()}}
+      function row(a,b){return '<div style="grid-column:1/-1"><dt>'+a+'</dt><dd style="font:500 .95rem/1.7 Tajawal,sans-serif">'+b+'</dd></div>'}
+      function sp(x){if(!UNL)return row('فرصة الظهور','🔒 مقفلة، تحتاج كود');var m=x.r.match(/^([\d.]+)٪\s*\(1 من ([\d,]+)\)\s*من ضبان\s*(.*)$/);return m?row('فرصة الظهور','1 من كل '+m[2]+' ضب ('+m[1]+'٪)')+row('النطاق','ضمن ضبان '+m[3]):row('فرصة الظهور',x.r)}
+      function pl(x){var a=x.l.split(' · '),o=row('المكان',a[0]),i,s;for(i=1;i<a.length;i++){s=a[i];o+=s.indexOf('من ')===0?row('المسافة',s.replace(' لين ',' إلى ')):(/كم/.test(s)?row('المسافة',s):row('الجهة',s))}return o}
+      function card(x){return '<div class="car">'+(x.img?'<img src="'+x.img+'" alt="'+x.n+'">':LZ)+'<div class="ci"><span class="cl">'+x.k+(x.g?' عملاق':'')+'</span><b>'+x.n+'</b><div class="pr" style="font-size:1.15rem"><small>سعر البيع</small> '+x.p+'</div><dl><div><dt>الوزن (كجم)</dt><dd>'+x.w+'</dd></div><div><dt>مكافأة أول صيد</dt><dd style="font-size:.95rem">'+x.b+'</dd></div>'+(x.t&&x.t!=='—'?row('الوقت',x.t):'')+sp(x)+pl(x)+(x.o?row('ملاحظة',x.o):'')+'</dl></div></div>'}
+      function r(){
+        var t=q.value.trim(),c=f.value,z=g.value,k=o.value;
+        var L=DABS.filter(function(x){return (x.n.indexOf(t)>-1||x.l.indexOf(t)>-1)&&(!c||x.k===c)&&(z===''||String(x.g)===z)});
+        if(k!=='i')L=L.slice().sort(function(a,b){return k==='n'?a.n.localeCompare(b.n,'ar'):k==='e'?b.pm-a.pm:k==='p'?a.pm-b.pm:k==='w'?b.wm-a.wm:a.rm-b.rm});
+        ct.textContent=L.length+' ضب';
+        cg.innerHTML=L.length?L.slice(0,N).map(card).join(''):'<div class="soon">ما لقينا ضب بهذا الاختيار</div>';
+        mr.style.display=L.length>N?'inline-block':'none';
+      }
+      function reset(){N=24;r()}
+      q.oninput=reset;f.onchange=reset;g.onchange=reset;o.onchange=reset;
+      mr.onclick=function(){N+=24;r()};
+      r();
+    }
+    var PLACES=[
+     {n:'شعاب التيه',c:['شمال 11210','غرب 6970'],img:'https://i.ibb.co/nq8HqV7h/cached-Media.png'},
+     {n:'خانق العماليق',c:['شمال 7240','غرب 11130'],img:'https://i.ibb.co/hRdysj0b/cached-Media.png'},
+     {n:'محطه ديار العماليق',c:['شمال 10880','غرب 8770'],img:'https://i.ibb.co/8TWQ8LL/cached-Media.png'},
+     {n:'ديار المماليك',c:['شمال 12410','غرب 1090'],img:'https://i.ibb.co/W4ngKmc6/IMG-0570.jpg'},
+     {n:'حزم الياقوت',c:['شمال 14450','شرق 5230'],img:'https://i.ibb.co/prv8kySV/IMG-0569.jpg'},
+     {n:'قارة التبر',c:['جنوب 14400','شرق 5240'],img:'https://i.ibb.co/xKxHTgjr/IMG-1212.jpg'},
+     {n:'نقرة الفيروز',c:['شمال 2650','غرب 15120'],img:'https://i.ibb.co/qGXVHqK/IMG-1213.jpg'}
+    ];
+    function coords(d){
+      view.innerHTML='<h3>'+d.n+'</h3><p>'+d.t+'</p><div class="cg">'+PLACES.map(function(x){return '<div class="car"><img src="'+x.img+'" alt="'+x.n+'" loading="lazy"><div class="ci"><b>'+x.n+'</b><dl>'+x.c.map(function(s){var a=s.split(' ');return '<div><dt>'+a[0]+'</dt><dd>'+a[1]+'</dd></div>'}).join('')+'</dl></div></div>'}).join('')+'</div>';
+    }
+    D.forEach(function(d,i){var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=d.n;b.onclick=function(){show(i)};tabs.appendChild(b)});
+    show(0);
+    var g=document.getElementById('gate'),ok=document.getElementById('ok');
+    document.body.style.overflow='hidden';ok.focus();
+    ok.onclick=function(){g.classList.add('out');document.body.style.overflow='';window.scrollTo(0,0);setTimeout(function(){g.remove()},450)};
+    var bg=document.querySelector('.burger'),m=document.getElementById('menu');
+    bg.onclick=function(){var o=m.classList.toggle('open');bg.setAttribute('aria-expanded',o)};
+    m.onclick=function(e){if(e.target.tagName==='A'){m.classList.remove('open');bg.setAttribute('aria-expanded',false)}};
+    var a=document.getElementById('d1'),b2=document.getElementById('d2');
+    window.addEventListener('scroll',function(){var y=window.scrollY||0;a.style.transform='translateX('+(y*-.03)+'px)';b2.style.transform='translateX('+(y*.06)+'px)'},{passive:true});
+  })();
+</script>
+</body>
+</html>
